@@ -1,0 +1,15 @@
+# Generated files
+node_modules/
+.DS_Store
+*.log
+.cache
+.parcel-cache
+
+# Bundle build files
+dist/
+
+# IDE
+.vscode/
+
+# Environment files
+.env

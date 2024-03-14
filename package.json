@@ -1,0 +1,26 @@
+{
+  "name": "new_algolia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html --port 3000",
+    "build": "parcel build index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "parcel-bundler": "^1.12.5"
+  },
+  "dependencies": {
+    "@algolia/autocomplete-js": "^1.17.0",
+    "@algolia/autocomplete-plugin-query-suggestions": "^1.17.0",
+    "@algolia/autocomplete-plugin-recent-searches": "^1.17.0",
+    "@algolia/autocomplete-theme-classic": "^1.17.0",
+    "@algolia/client-search": "^4.22.1",
+    "algoliasearch": "^4.22.1",
+    "instantsearch.js": "^4.66.0",
+    "npm": "^10.5.0"
+  }
+}
