@@ -1,6 +1,6 @@
 # Running the Algolia App Locally
 
-Foobar is a Python library for dealing with word pluralization.
+This demo application is meant to run locally. The following steps will guide you through installing the required dependencies (node modules) and running the application locally in `localhost:3000`.
 
 ## Installation
 
