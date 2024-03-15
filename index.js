@@ -120,7 +120,16 @@ const querySuggestionsPlugin = createQuerySuggestionsPlugin({
       hitsPerPage: 3,
     };
   },
-});
+  categoryAttribute: [
+    'instant_search',
+    'facets',
+    'exact_matches',
+    'categories',
+    'brands',
+  ],
+  itemsWithCategories: 1,
+  categoriesPerItem: 2,
+  });
 
 const search = instantsearch({
   indexName: INSTANT_SEARCH_INDEX_NAME,
@@ -136,18 +145,20 @@ search.addWidgets([
   virtualSearchBox({}),
   hierarchicalMenu({
     container: '#categories',
-    attributes: ['hierarchicalCategories.lvl0', 'hierarchicalCategories.lvl1'],
+    attributes: ['hierarchicalCategories.lvl0', 'hierarchicalCategories.lvl1', 'brand'],
   }),
   hits({
     container: '#hits',
     templates: {
-      item: (hit, { html, components }) => html`
+      item: (hit, { html, components, sendEvent }) => html`
         <div>
           <img src="${hit.image}" align="left" alt="${hit.name}" />
-          <div class="hit-name">
+          <div onclick="${() => sendEvent('click', hit, 'my-click-event')}" class="hit-name">
             ${components.Highlight({ hit, attribute: 'name' })}
+            ${console.log('test event')}
           </div>
-          <div class="hit-description">
+          <div  onclick="${() =>
+            sendEvent('conversion', hit, 'my-conversion-event')}" class="hit-description">
             ${components.Highlight({ hit, attribute: 'description' })}
           </div>
           <div class="hit-price">$${hit.price}</div>
@@ -159,6 +170,7 @@ search.addWidgets([
     container: '#pagination',
   }),
 ]);
+
 
 search.start();
 
@@ -308,14 +320,4 @@ window.addEventListener('popstate', () => {
   skipInstantSearchUiStateUpdate = true;
   setQuery(search.helper?.state.query || '');
 });
-
-// autocomplete({
-//   container: '#autocomplete',
-//   placeholder: 'Search for products',
-//   insights: true,
-//   plugins: [querySuggestionsPlugin],
-  
-// });
-
-
 
